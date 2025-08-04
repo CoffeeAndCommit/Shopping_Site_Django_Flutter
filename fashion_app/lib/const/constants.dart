@@ -1,4 +1,4 @@
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/const/resource.dart';
 // import 'package:fashion_app/src/categories/models/categories_model.dart';
 // import 'package:fashion_app/src/products/models/products_model.dart';
@@ -8,9 +8,9 @@ LinearGradient mGradient = const LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
   colors: [
-    Kolors.kPrimaryLight,
-    Kolors.kWhite,
-    Kolors.kPrimary,
+    MColors.kPrimaryLight,
+    MColors.kWhite,
+    MColors.kPrimary,
   ],
 );
 
@@ -18,9 +18,9 @@ LinearGradient mPGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
   colors: [
-    Kolors.kPrimaryLight,
-    Kolors.kPrimaryLight.withOpacity(0.7),
-    Kolors.kPrimary,
+    MColors.kPrimaryLight,
+    MColors.kPrimaryLight.withOpacity(0.7),
+    MColors.kPrimary,
   ],
 );
 
@@ -28,8 +28,8 @@ LinearGradient mBtnGradient = const LinearGradient(
   begin: Alignment.bottomLeft,
   end: Alignment.bottomRight,
   colors: [
-    Kolors.kPrimaryLight,
-    Kolors.kWhite,
+    MColors.kPrimaryLight,
+    MColors.kWhite,
   ],
 );
 
@@ -244,19 +244,19 @@ String avatar =
 //           decoration: InputDecoration(
 //               hintText: hintText,
 //               errorBorder: const UnderlineInputBorder(
-//                 borderSide: BorderSide(color: Kolors.kRed, width: 0.5),
+//                 borderSide: BorderSide(color: MColors.kRed, width: 0.5),
 //               ),
 //               focusedBorder: const UnderlineInputBorder(
-//                 borderSide: BorderSide(color: Kolors.kPrimary, width: 0.5),
+//                 borderSide: BorderSide(color: MColors.kPrimary, width: 0.5),
 //               ),
 //               focusedErrorBorder: const UnderlineInputBorder(
-//                 borderSide: BorderSide(color: Kolors.kRed, width: 0.5),
+//                 borderSide: BorderSide(color: MColors.kRed, width: 0.5),
 //               ),
 //               disabledBorder: const UnderlineInputBorder(
-//                 borderSide: BorderSide(color: Kolors.kGray, width: 0.5),
+//                 borderSide: BorderSide(color: MColors.kGray, width: 0.5),
 //               ),
 //               enabledBorder: const UnderlineInputBorder(
-//                 borderSide: BorderSide(color: Kolors.kGray, width: 0.5),
+//                 borderSide: BorderSide(color: MColors.kGray, width: 0.5),
 //               ),
 //               border: InputBorder.none),
 //           controller: controller,

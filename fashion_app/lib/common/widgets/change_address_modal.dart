@@ -1,5 +1,4 @@
-
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
@@ -24,12 +23,12 @@ Future<dynamic> changeAddressBottomSheet(BuildContext context) {
             Center(
                 child: ReusableText(
                     text: AppText.kCheckoutAddress,
-                    style: appStyle(16, Kolors.kPrimary, FontWeight.w500))),
+                    style: appStyle(16, MColors.kPrimary, FontWeight.w500))),
             SizedBox(
               height: 10.h,
             ),
             Divider(
-              color: Kolors.kGrayLight,
+              color: MColors.kGrayLight,
               thickness: 0.5.h,
             ),
             SizedBox(
@@ -37,18 +36,17 @@ Future<dynamic> changeAddressBottomSheet(BuildContext context) {
             ),
             ReusableText(
                 text: AppText.kCheckoutAddressText,
-                style: appStyle(13, Kolors.kGray, FontWeight.w500)),
+                style: appStyle(13, MColors.kGray, FontWeight.w500)),
             SizedBox(
               height: 10.h,
             ),
             SizedBox(
-              height: ScreenUtil().screenHeight*0.6,
+              height: ScreenUtil().screenHeight * 0.6,
 
               //  Todo adress selection
-              
+
               // child: const CheckoutAddressSelection()
-              
-              )
+            )
           ],
         ),
       );

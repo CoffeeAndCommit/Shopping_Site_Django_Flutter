@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
-
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidget extends StatelessWidget {
-  const ShimmerWidget({super.key, required this.shimmerWidth, required this.shimmerHieght, required this.shimmerRadius});
+  const ShimmerWidget(
+      {super.key,
+      required this.shimmerWidth,
+      required this.shimmerHieght,
+      required this.shimmerRadius});
 
   final double shimmerWidth;
   final double shimmerHieght;
@@ -17,7 +20,8 @@ class ShimmerWidget extends StatelessWidget {
     return SizedBox(
       width: shimmerWidth,
       height: shimmerHieght,
-      child: _buildShimmerLine(height: shimmerHieght, width: shimmerHieght, radius: shimmerRadius),
+      child: _buildShimmerLine(
+          height: shimmerHieght, width: shimmerHieght, radius: shimmerRadius),
     );
   }
 
@@ -25,7 +29,7 @@ class ShimmerWidget extends StatelessWidget {
       {required double height, required double width, required double radius}) {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
-      highlightColor: Kolors.kGray.withOpacity(0.3),
+      highlightColor: MColors.kGray.withOpacity(0.3),
       child: Container(
         height: height,
         width: width,

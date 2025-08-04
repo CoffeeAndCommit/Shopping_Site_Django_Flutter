@@ -1,5 +1,4 @@
-
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,8 @@ class EmailTextField extends StatelessWidget {
     this.controller,
     this.hintText,
     this.focusNode,
-    this.initialValue,  this.radius,
+    this.initialValue,
+    this.radius,
   }) : super(key: key);
   final String? hintText;
   final double? radius;
@@ -39,33 +39,33 @@ class EmailTextField extends StatelessWidget {
             return null;
           }
         },
-        style: appStyle(12, Kolors.kDark, FontWeight.normal),
+        style: appStyle(12, MColors.kDark, FontWeight.normal),
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: prefixIcon,
           isDense: true,
           contentPadding: const EdgeInsets.all(6),
 
-          hintStyle: appStyle(12, Kolors.kGray, FontWeight.normal),
+          hintStyle: appStyle(12, MColors.kGray, FontWeight.normal),
           // contentPadding: EdgeInsets.only(left: 24),
-          errorBorder:  OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(radius??12))),
-          focusedBorder:  OutlineInputBorder(
-              borderSide: const BorderSide(color: Kolors.kPrimary, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(radius??12))),
-          focusedErrorBorder:  OutlineInputBorder(
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 12))),
+          focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: MColors.kPrimary, width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 12))),
+          focusedErrorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.red, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(radius??12))),
-          disabledBorder:  OutlineInputBorder(
-              borderSide: const BorderSide(color: Kolors.kGray, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(radius??12))),
-          enabledBorder:  OutlineInputBorder(
-              borderSide: const BorderSide(color: Kolors.kGray, width: 0.5),
-              borderRadius: BorderRadius.all(Radius.circular(radius??12))),
-          border:  OutlineInputBorder(
-            borderSide: const BorderSide(color: Kolors.kPrimary, width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 12))),
+          disabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: MColors.kGray, width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 12))),
+          enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: MColors.kGray, width: 0.5),
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 12))),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: MColors.kPrimary, width: 0.5),
             borderRadius: BorderRadius.all(
-              Radius.circular(radius??12),
+              Radius.circular(radius ?? 12),
             ),
           ),
         ));

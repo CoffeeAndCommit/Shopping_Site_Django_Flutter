@@ -1,10 +1,7 @@
-
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
@@ -14,7 +11,8 @@ class CustomTextField extends StatelessWidget {
       required this.keyboardType,
       this.validator,
       this.suffixIcon,
-      this.obscureText, this.onEditingComplete});
+      this.obscureText,
+      this.onEditingComplete});
 
   final TextEditingController controller;
   final String hintText;
@@ -27,14 +25,13 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(4.h),
-      padding: EdgeInsets.only( left:4.h),
+      padding: EdgeInsets.only(left: 4.h),
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 0.3,
-          color: Kolors.kGray,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(9))
-      ),
+          border: Border.all(
+            width: 0.3,
+            color: MColors.kGray,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(9))),
       child: TextFormField(
         keyboardType: keyboardType,
         onEditingComplete: onEditingComplete,
@@ -42,11 +39,11 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
             hintText: hintText,
             suffixIcon: suffixIcon,
-            hintStyle: appStyle(11, Kolors.kGray, FontWeight.normal),
+            hintStyle: appStyle(11, MColors.kGray, FontWeight.normal),
             border: InputBorder.none),
         controller: controller,
         cursorHeight: 20,
-        style: appStyle(11, Kolors.kDark, FontWeight.normal),
+        style: appStyle(11, MColors.kDark, FontWeight.normal),
         validator: validator,
       ),
     );

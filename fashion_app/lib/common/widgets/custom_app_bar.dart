@@ -1,5 +1,4 @@
-
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class CustomAppBar extends HookWidget {
             padding: EdgeInsets.only(left: 3.w),
             child: ReusableText(
                 text: "Location",
-                style: appStyle(12, Kolors.kGray, FontWeight.normal)),
+                style: appStyle(12, MColors.kGray, FontWeight.normal)),
           ),
           SizedBox(
             height: 5.h,
@@ -36,7 +35,7 @@ class CustomAppBar extends HookWidget {
               const Icon(
                 Ionicons.location,
                 size: 14,
-                color: Kolors.kPrimary,
+                color: MColors.kPrimary,
               ),
               SizedBox(
                 width: 5.h,
@@ -49,7 +48,7 @@ class CustomAppBar extends HookWidget {
                     //     : "Please Set Your location",
                     '',
                     maxLines: 1,
-                    style: appStyle(14, Kolors.kDark, FontWeight.w500)),
+                    style: appStyle(14, MColors.kDark, FontWeight.w500)),
               ),
             ],
           ),
@@ -76,7 +75,7 @@ class CustomAppBar extends HookWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 0.5,
-                      color: Kolors.kGrayLight,
+                      color: MColors.kGrayLight,
                     ),
                     borderRadius: const BorderRadius.all(Radius.circular(9)),
                   ),
@@ -87,14 +86,15 @@ class CustomAppBar extends HookWidget {
                         const Icon(
                           Ionicons.search,
                           size: 20,
-                          color: Kolors.kPrimaryLight,
+                          color: MColors.kPrimaryLight,
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
                         ReusableText(
                             text: "Search",
-                            style: appStyle(14, Kolors.kGray, FontWeight.w400)),
+                            style:
+                                appStyle(14, MColors.kGray, FontWeight.w400)),
                       ],
                     ),
                   ),
@@ -103,12 +103,12 @@ class CustomAppBar extends HookWidget {
                   height: 40.h,
                   width: 40.w,
                   decoration: const BoxDecoration(
-                      color: Kolors.kPrimary,
+                      color: MColors.kPrimary,
                       borderRadius: BorderRadius.all(Radius.circular(6))),
                   child: const Icon(
                     FontAwesome.sliders,
                     size: 20,
-                    color: Kolors.kWhite,
+                    color: MColors.kWhite,
                   ),
                 ),
               ],

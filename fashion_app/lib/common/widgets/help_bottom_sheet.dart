@@ -1,5 +1,4 @@
-
-import 'package:fashion_app/common/utils/kcolors.dart' show Kolors;
+import 'package:fashion_app/common/utils/colors.dart' show MColors;
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +24,7 @@ Future<dynamic> showHelpCenterBottomSheet(BuildContext context) {
                 'Fashion App Help Center',
                 style: appStyle(
                   18.0,
-                  Kolors.kPrimary,
+                  MColors.kPrimary,
                   FontWeight.bold,
                 ),
               ),
@@ -35,7 +34,7 @@ Future<dynamic> showHelpCenterBottomSheet(BuildContext context) {
               Text(
                 'We\'re here to help! Find answers to frequently asked questions or contact our support team.',
                 textAlign: TextAlign.center,
-                style: appStyle(16.0, Kolors.kDark, FontWeight.normal),
+                style: appStyle(16.0, MColors.kDark, FontWeight.normal),
               ),
               SizedBox(height: 15.h),
 
@@ -50,7 +49,7 @@ Future<dynamic> showHelpCenterBottomSheet(BuildContext context) {
                 title: const Text('Can I return an item?'),
                 trailing: const Icon(
                   Icons.keyboard_arrow_right,
-                  color: Kolors.kGray,
+                  color: MColors.kGray,
                 ),
                 onTap: () {
                   // Handle FAQ tap (open details page or show answer)
@@ -61,7 +60,7 @@ Future<dynamic> showHelpCenterBottomSheet(BuildContext context) {
                 title: const Text('How do I track my order?'),
                 trailing: const Icon(
                   Icons.keyboard_arrow_right,
-                  color: Kolors.kGray,
+                  color: MColors.kGray,
                 ),
                 onTap: () {
                   // Handle FAQ tap (open details page or show answer)
@@ -75,7 +74,7 @@ Future<dynamic> showHelpCenterBottomSheet(BuildContext context) {
                 'Contact Us:',
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
-               SizedBox(height: 10.h),
+              SizedBox(height: 10.h),
               const Row(
                 children: [
                   Icon(MaterialCommunityIcons.email_outline),

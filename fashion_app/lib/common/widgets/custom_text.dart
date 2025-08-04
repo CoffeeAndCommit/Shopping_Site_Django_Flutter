@@ -1,5 +1,4 @@
-
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,8 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.hintText,
     this.focusNode,
-    this.initialValue, this.maxLines,
+    this.initialValue,
+    this.maxLines,
   });
   final String? hintText;
   final Widget? prefixIcon;
@@ -27,10 +27,9 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
         cursorColor: Colors.black,
-        maxLines: maxLines??1,
+        maxLines: maxLines ?? 1,
         textInputAction: TextInputAction.next,
         onEditingComplete: onEditingComplete,
-        
         keyboardType: keyboardType,
         initialValue: initialValue,
         controller: controller,
@@ -41,30 +40,29 @@ class CustomTextField extends StatelessWidget {
             return null;
           }
         },
-        style: appStyle(12, Kolors.kDark, FontWeight.normal),
+        style: appStyle(12, MColors.kDark, FontWeight.normal),
         decoration: InputDecoration(
-
           hintText: hintText,
           isDense: true,
           contentPadding: const EdgeInsets.all(9),
-          hintStyle: appStyle(12, Kolors.kGray, FontWeight.normal),
+          hintStyle: appStyle(12, MColors.kGray, FontWeight.normal),
           errorBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red, width: 0.7),
               borderRadius: BorderRadius.all(Radius.circular(6))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Kolors.kPrimary, width: 0.7),
+              borderSide: BorderSide(color: MColors.kPrimary, width: 0.7),
               borderRadius: BorderRadius.all(Radius.circular(6))),
           focusedErrorBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red, width: 0.7),
               borderRadius: BorderRadius.all(Radius.circular(6))),
           disabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Kolors.kGray, width: 0.7),
+              borderSide: BorderSide(color: MColors.kGray, width: 0.7),
               borderRadius: BorderRadius.all(Radius.circular(6))),
           enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Kolors.kGray, width: 0.7),
+              borderSide: BorderSide(color: MColors.kGray, width: 0.7),
               borderRadius: BorderRadius.all(Radius.circular(6))),
           border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Kolors.kPrimary, width: 0.7),
+            borderSide: BorderSide(color: MColors.kPrimary, width: 0.7),
             borderRadius: BorderRadius.all(
               Radius.circular(16),
             ),

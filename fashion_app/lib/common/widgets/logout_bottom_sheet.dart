@@ -1,6 +1,5 @@
-
 import 'package:fashion_app/common/services/storage.dart';
-import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/custom_button.dart';
@@ -26,12 +25,12 @@ Future<dynamic> logoutBottomSheet(BuildContext context) {
             Center(
                 child: ReusableText(
                     text: AppText.kLogout,
-                    style: appStyle(16, Kolors.kPrimary, FontWeight.w500))),
+                    style: appStyle(16, MColors.kPrimary, FontWeight.w500))),
             SizedBox(
               height: 10.h,
             ),
             Divider(
-              color: Kolors.kGrayLight,
+              color: MColors.kGrayLight,
               thickness: 0.5.h,
             ),
             SizedBox(
@@ -40,7 +39,7 @@ Future<dynamic> logoutBottomSheet(BuildContext context) {
             Center(
                 child: ReusableText(
                     text: AppText.kLogoutText,
-                    style: appStyle(14, Kolors.kGray, FontWeight.w500))),
+                    style: appStyle(14, MColors.kGray, FontWeight.w500))),
             SizedBox(
               height: 20.h,
             ),
@@ -51,8 +50,8 @@ Future<dynamic> logoutBottomSheet(BuildContext context) {
                 children: [
                   GradientBtn(
                     text: "Cancel",
-                    borderColor: Kolors.kDark,
-                    btnColor: Kolors.kWhite,
+                    borderColor: MColors.kDark,
+                    btnColor: MColors.kWhite,
                     onTap: () => Navigator.pop(context),
                     btnHieght: 35.h,
                     radius: 16,
