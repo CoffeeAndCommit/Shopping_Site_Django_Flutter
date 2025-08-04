@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:fashion/common/utils/kcolors.dart';
+
+import 'package:fashion_app/common/utils/kcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

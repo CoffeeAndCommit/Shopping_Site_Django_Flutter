@@ -1,8 +1,9 @@
 
 
-import 'package:fashion/common/utils/kcolors.dart';
-import 'package:fashion/common/widgets/app_style.dart';
-import 'package:fashion/common/widgets/reusable_text.dart';
+
+import 'package:fashion_app/common/utils/kcolors.dart';
+import 'package:fashion_app/common/widgets/app_style.dart';
+import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
