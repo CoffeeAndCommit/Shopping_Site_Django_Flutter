@@ -1,26 +1,8 @@
 // ignore_for_file: unused_element
 
-// import 'package:fashion/src/auth/views/login_page.dart';
-// import 'package:fashion/src/auth/views/registration_page.dart';
-// import 'package:fashion/src/auth/views/verification_page.dart';
-// import 'package:fashion/src/categories/views/categories_page.dart';
-// import 'package:fashion/src/categories/views/category_page.dart';
-// import 'package:fashion/src/checkout/views/checkout_page.dart';
-// import 'package:fashion/src/checkout/views/failed_payment.dart';
-// import 'package:fashion/src/checkout/views/successful_payment.dart';
-// import 'package:fashion/src/entrypoint/entrypoint.dart';
-// import 'package:fashion/src/address/views/add_address.dart';
-// import 'package:fashion/src/address/views/addresses_page.dart';
-// import 'package:fashion/src/notifications/views/notification_page.dart';
-// import 'package:fashion/src/notifications/views/tracking_page.dart';
-// import 'package:fashion/src/profile/views/help_center.dart';
-// import 'package:fashion/src/onboarding/onboarding_screen.dart';
-// import 'package:fashion/src/profile/views/order_page.dart';
-// import 'package:fashion/src/profile/views/policy_page.dart';
-// import 'package:fashion/src/product/views/product_page.dart';
-// import 'package:fashion/src/review/review_page.dart';
-// import 'package:fashion/src/search/views/search_page.dart';
-// import 'package:fashion/src/splashscreen/splash_screen.dart';
+
+import 'package:fashion_app/src/entrypoint/views/entrypoint.dart';
+import 'package:fashion_app/src/splashscreen/views/spalshscreen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,17 +10,17 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 
 final GoRouter _router = GoRouter(
-   navigatorKey: navigatorKey,
+  navigatorKey: navigatorKey,
   initialLocation: '/',
   routes: [
-    // GoRoute(
-    //   path: '/',
-    //   builder: (context, state) => const SplashScreen(),
-    // ),
-    // GoRoute(
-    //   path: '/home',
-    //   builder: (context, state) => AppEntryPoint(),
-    // ),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/home',
+      builder: (context, state) => AppEntryPoint(),
+    ),
     // GoRoute(
     //   path: '/onboarding',
     //   builder: (context, state) => const OnBoardingScreen(),

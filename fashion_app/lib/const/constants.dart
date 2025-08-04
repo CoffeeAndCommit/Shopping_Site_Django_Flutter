@@ -1,11 +1,10 @@
-
 import 'package:fashion_app/common/utils/kcolors.dart';
 import 'package:fashion_app/const/resource.dart';
 // import 'package:fashion_app/src/categories/models/categories_model.dart';
 // import 'package:fashion_app/src/products/models/products_model.dart';
 import 'package:flutter/material.dart';
 
-LinearGradient kGradient = const LinearGradient(
+LinearGradient mGradient = const LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
   colors: [
@@ -15,7 +14,7 @@ LinearGradient kGradient = const LinearGradient(
   ],
 );
 
-LinearGradient kPGradient = LinearGradient(
+LinearGradient mPGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
   colors: [
@@ -25,7 +24,7 @@ LinearGradient kPGradient = LinearGradient(
   ],
 );
 
-LinearGradient kBtnGradient = const LinearGradient(
+LinearGradient mBtnGradient = const LinearGradient(
   begin: Alignment.bottomLeft,
   end: Alignment.bottomRight,
   colors: [
@@ -34,31 +33,31 @@ LinearGradient kBtnGradient = const LinearGradient(
   ],
 );
 
-BorderRadiusGeometry kClippingRadius = const BorderRadius.only(
+BorderRadiusGeometry mClippingRadius = const BorderRadius.only(
   topLeft: Radius.circular(20),
   topRight: Radius.circular(20),
 );
 
-BorderRadiusGeometry kRadiusAll = BorderRadius.circular(12);
+BorderRadiusGeometry mRadiusAll = BorderRadius.circular(12);
 
-BorderRadiusGeometry kRadiusTop = const BorderRadius.only(
+BorderRadiusGeometry mRadiusTop = const BorderRadius.only(
   topLeft: Radius.circular(9),
   topRight: Radius.circular(9),
 );
 
-BorderRadiusGeometry kRadiusBottom = const BorderRadius.only(
+BorderRadiusGeometry mRadiusBottom = const BorderRadius.only(
   bottomLeft: Radius.circular(12),
   bottomRight: Radius.circular(12),
 );
 
 Widget Function(BuildContext, String)? placeholder = (p0, p1) => Image.asset(
-      R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+      My.ASSETS_IMAGES_PLACEHOLDER_WEBP,
       fit: BoxFit.cover,
     );
 
 Widget Function(BuildContext, String, Object)? errorWidget =
     (p0, p1, p3) => Image.asset(
-          R.ASSETS_IMAGES_PLACEHOLDER_WEBP,
+          My.ASSETS_IMAGES_PLACEHOLDER_WEBP,
           fit: BoxFit.cover,
         );
 
@@ -219,7 +218,6 @@ List<String> images = [
 
 String avatar =
     'https://firebasestorage.googleapis.com/v0/b/authenification-b4dc9.appspot.com/o/uploads%2Favatar.png?alt=media&token=7da81de9-a163-4296-86ac-3194c490ce15';
-
 
 // class _buildtextfield extends StatelessWidget {
 //   const _buildtextfield({

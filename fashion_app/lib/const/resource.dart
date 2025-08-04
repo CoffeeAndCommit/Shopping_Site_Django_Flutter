@@ -1,8 +1,8 @@
 /// Generate by [asset_generator](https://github.com/fluttercandies/flutter_asset_generator) library.
 /// PLEASE DO NOT EDIT MANUALLY.
 // ignore_for_file: constant_identifier_names
-class R {
-  const R._();
+class My {
+  const My._();
 
   /// ![preview](file:///Volumes/Transfer/Projects/fashion/.env.development)
   static const String _ENV_DEVELOPMENT = '.env.development';
