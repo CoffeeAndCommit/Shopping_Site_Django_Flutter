@@ -93,6 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   TextButton(
                       onPressed: () {
                         //  Navigate yo login page
+                        context.go('/login');
                       },
                       child: const Text(
                         "Sign In",
