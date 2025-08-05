@@ -1,6 +1,9 @@
 class AppText {
   static const String kCategory = 'Category';
-  static const String kAppName = 'Fashion APp';
+  static const String kAppName = 'Fashion App';
+  static const String kGetStarted = "Let's Get Start";
+
+
 
   static const String kCategories = 'Categories';
   static const String kNotifications = 'Notifications';
