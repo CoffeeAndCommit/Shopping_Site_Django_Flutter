@@ -22,21 +22,7 @@ class HomeCategoriesList extends StatelessWidget {
               FontWeight.bold,
             )),
       ),
-      body: ListView.builder(
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final category = categories[index];
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundColor: MColors.kSecondaryLight,
-              radius: 18,
-              child: Padding(padding: EdgeInsetsGeometry.all(8.h),
-              child: SvgPicture.network(category.imageUrl),
-              ),
-            ),
-          );
-        },
-      ),
+     
     );
   }
 }
