@@ -3,6 +3,7 @@ import 'package:fashion_app/src/home/controller/home_tab_notifier.dart';
 import 'package:fashion_app/src/home/widgets/categories_list.dart';
 import 'package:fashion_app/src/home/widgets/home_header.dart';
 import 'package:fashion_app/src/home/widgets/home_slider.dart';
+import 'package:fashion_app/src/home/widgets/home_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -69,6 +70,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             height: 15.h,
           ),
           const HomeCategoriesList(),
+          SizedBox(
+            height: 15.h,
+          ),
+          HomeTabs(tabController: tabController),
         ],
       ),
     );

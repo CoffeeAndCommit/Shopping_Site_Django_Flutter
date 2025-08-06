@@ -1,18 +1,13 @@
-
-
-
 import 'package:fashion_app/common/utils/enums.dart';
 import 'package:flutter/material.dart';
 
 class HomeTabNotifier extends ChangeNotifier {
   QueryType queryType = QueryType.all;
- String _index = 'All';
+  String _index = 'All';
 
- String get index => _index;
+  String get index => _index;
 
-
-
-void  setIndex(String value) {
+  void setIndex(String value) {
     switch (value) {
       case 'All':
         setQueryType(QueryType.all);
@@ -37,11 +32,9 @@ void  setIndex(String value) {
     notifyListeners();
   }
 
-
   void setQueryType(QueryType queryType) {
     queryType = queryType;
+    print(queryType);
     notifyListeners();
   }
-
-
 }
