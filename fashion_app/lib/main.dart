@@ -4,6 +4,7 @@ import 'package:fashion_app/common/utils/environment.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
 import 'package:fashion_app/src/categories/controller/category_notifier.dart';
 import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
+import 'package:fashion_app/src/home/controller/home_tab_notifier.dart';
 import 'package:fashion_app/src/onboarding/controller/onboarding_notifier.dart';
 import 'package:fashion_app/src/splashscreen/views/spalshscreen_page.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => OnboardingNotifier()),
       ChangeNotifierProvider(create: (_) => TabIndexNotifier()),
       ChangeNotifierProvider(create: (_) => CategoryNotifier()),
+      ChangeNotifierProvider(create: (_) => HomeTabNotifier()),
     ],
     child: const MyApp(),
     
