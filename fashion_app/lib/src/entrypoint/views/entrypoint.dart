@@ -2,7 +2,7 @@ import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/src/cart/views/cart_screen.dart';
 import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
-import 'package:fashion_app/src/entrypoint/views/home_screen.dart';
+import 'package:fashion_app/src/home/views/home_screen.dart';
 import 'package:fashion_app/src/profile/views/profile_screen.dart';
 import 'package:fashion_app/src/wishlist/views/wishlist_page.dart';
 import 'package:flutter/material.dart';
