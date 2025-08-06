@@ -65,7 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               SizedBox(
                 height: 10.h,
               ),
-              GradientBtn(
+              CustomButton(
                 text: AppText.kGetStarted,
                 btnHieght: 35,
                 radius: 20,
