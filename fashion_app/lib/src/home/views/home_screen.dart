@@ -1,3 +1,4 @@
+import 'package:fashion_app/src/home/widgets/home_header.dart';
 import 'package:fashion_app/src/home/widgets/home_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +20,10 @@ class HomePage extends StatelessWidget {
             height: 20.h,
           ),
           const HomeSlider(),
+          SizedBox(
+            height: 15.h,
+          ),
+          const HomeHeader(),
         ],
       ),
     );
