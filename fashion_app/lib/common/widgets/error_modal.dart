@@ -12,7 +12,7 @@ void showErrorPopup(BuildContext context, String errorMessage, String? title,
           title ?? 'Error',
           style: appStyle(
             18.0,
-            MColors.kGrayLight,
+            MColors.kRed,
             FontWeight.bold,
           ),
         ),
