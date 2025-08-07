@@ -27,8 +27,13 @@ class StaggeredTileWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // context.push('/product/${product.id}');
+        print('/product/${product.id}');
         context.read<ProductNotifier>().setproduct(product);
         context.push('/product/${product.id}');
+        // context.pushNamed(
+        //   'product',
+        //   pathParameters: {'id': product.id.toString()},
+        // );
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),

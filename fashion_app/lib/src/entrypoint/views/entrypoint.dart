@@ -7,16 +7,27 @@ import 'package:fashion_app/src/profile/views/profile_screen.dart';
 import 'package:fashion_app/src/wishlist/views/wishlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class AppEntryPoint extends StatelessWidget {
+  
   AppEntryPoint({super.key});
 
   List<Widget> pageList = [
     const HomePage(),
-    const Cartpage(),
     const WishlistPage(),
+    const Cartpage(),
+    
     const ProfilePage(),
+  ];
+
+  final List<String> routePaths = [
+    '/home',
+    
+    '/wishlist',
+    '/cart',
+    '/profile',
   ];
 
   @override
@@ -53,6 +64,7 @@ class AppEntryPoint extends StatelessWidget {
                       onTap: (value) {
                         print(value);
                         tabindexnotifier.setindex(value);
+                        context.push(routePaths[value]);
                       },
                       items: [
                         BottomNavigationBarItem(
