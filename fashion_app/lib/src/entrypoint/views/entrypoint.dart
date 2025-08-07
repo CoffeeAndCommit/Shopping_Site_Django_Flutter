@@ -64,7 +64,7 @@ class AppEntryPoint extends StatelessWidget {
                       onTap: (value) {
                         print(value);
                         tabindexnotifier.setindex(value);
-                        context.push(routePaths[value]);
+                        // context.push(routePaths[value]);
                       },
                       items: [
                         BottomNavigationBarItem(
