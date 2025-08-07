@@ -3,10 +3,13 @@ import 'package:fashion_app/common/services/storage.dart';
 import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
+import 'package:fashion_app/src/products/controllers/product_notifier.dart';
 import 'package:fashion_app/src/products/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class StaggeredTileWidget extends StatelessWidget {
   // const StaggeredTileWidget({super.key});
@@ -22,7 +25,16 @@ class StaggeredTileWidget extends StatelessWidget {
     String? accesstoken = Storage().getString('accesstoken');
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        // context.push('/product/${product.id}');
+        print('/product/${product.id}');
+        context.read<ProductNotifier>().setproduct(product);
+        context.push('/product/${product.id}');
+        // context.pushNamed(
+        //   'product',
+        //   pathParameters: {'id': product.id.toString()},
+        // );
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
@@ -42,13 +54,16 @@ class StaggeredTileWidget extends StatelessWidget {
                     Positioned(
                         right: 10.h,
                         top: 10.h,
-                        child: const CircleAvatar(
-                          backgroundColor: MColors.kSecondaryLight,
-                          radius: 10,
-                          child: Icon(
-                            AntDesign.heart,
-                            color: MColors.kRed,
-                            size: 18,
+                        child: GestureDetector(
+                          onTap: onTap,
+                          child: const CircleAvatar(
+                            backgroundColor: MColors.kSecondaryLight,
+                            radius: 10,
+                            child: Icon(
+                              AntDesign.heart,
+                              color: MColors.kRed,
+                              size: 18,
+                            ),
                           ),
                         ))
                   ],

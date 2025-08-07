@@ -1,19 +1,16 @@
 // ignore_for_file: unused_element
 
-
 import 'package:fashion_app/src/auth/views/login_screen.dart';
-import 'package:fashion_app/src/categories/view/category_page.dart';
-import 'package:fashion_app/src/categories/view/category_screen.dart';
 import 'package:fashion_app/src/entrypoint/views/entrypoint.dart';
 import 'package:fashion_app/src/notifications/views/notification_screen.dart';
 import 'package:fashion_app/src/onboarding/views/onboarding_screen.dart';
+import 'package:fashion_app/src/products/views/product_screen.dart';
 import 'package:fashion_app/src/search/views/search_screen.dart';
 import 'package:fashion_app/src/splashscreen/views/spalshscreen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 
 final GoRouter _router = GoRouter(
   navigatorKey: navigatorKey,
@@ -31,6 +28,8 @@ final GoRouter _router = GoRouter(
       path: '/onboarding',
       builder: (context, state) => const OnBoardingScreen(),
     ),
+
+    
     // GoRoute(
     //   path: '/review',
     //   builder: (context, state) => const ReviewsPage(),
@@ -63,14 +62,14 @@ final GoRouter _router = GoRouter(
     //   path: '/register',
     //   builder: (context, state) => const RegistrationPage(),
     // ),
-    GoRoute(
-      path: '/categories',
-      builder: (context, state) => const CategoriesPage(),
-    ),
-     GoRoute(
-      path: '/category',
-      builder: (context, state) => const CategoryPage(),
-    ),
+    // GoRoute(
+    //   path: '/categories',
+    //   builder: (context, state) => const CategoriesPage(),
+    // ),
+    //  GoRoute(
+    //   path: '/category',
+    //   builder: (context, state) => const CategoryPage(),
+    // ),
 
     // GoRoute(
     //   path: '/addaddress',
@@ -82,7 +81,7 @@ final GoRouter _router = GoRouter(
     //   builder: (context, state) => const AddressesListPage(),
     // ),
 
-     GoRoute(
+    GoRoute(
       path: '/notifications',
       builder: (context, state) => const NotificationPage(),
     ),
@@ -107,13 +106,13 @@ final GoRouter _router = GoRouter(
     //   builder: (context, state) => const FailedPayment(),
     // ),
 
-    // GoRoute(
-    //   path: '/product/:id',
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     final productId = state.pathParameters['id'];
-    //     return ProductPage(productId: productId.toString());
-    //   },
-    // ),
+    GoRoute(
+      path: '/product/:id',
+      builder: (BuildContext context, GoRouterState state) {
+        final productId = state.pathParameters['id'];
+        return ProductPage(productId: productId.toString());
+      },
+    ),
   ],
 );
 
