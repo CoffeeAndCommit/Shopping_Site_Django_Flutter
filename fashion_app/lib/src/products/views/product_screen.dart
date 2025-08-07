@@ -1,12 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashion_app/common/services/storage.dart';
 import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/back_button.dart';
+import 'package:fashion_app/common/widgets/error_modal.dart';
+import 'package:fashion_app/common/widgets/login_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/const/constants.dart' show placeholder, errorWidget;
+import 'package:fashion_app/src/products/controllers/colors_sizes_controller.dart';
 import 'package:fashion_app/src/products/controllers/product_notifier.dart';
 import 'package:fashion_app/src/products/widgets/color_selection.dart';
 import 'package:fashion_app/src/products/widgets/expandable_product.dart';
+import 'package:fashion_app/src/products/widgets/product_bottom_bar.dart';
 import 'package:fashion_app/src/products/widgets/product_sizes_widget.dart';
 import 'package:fashion_app/src/products/widgets/similar_product.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +27,8 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? accessToken = Storage().getString('accessToken');
+    print(accessToken);
     print(context.read<ProductNotifier>().product!.title);
     return Consumer<ProductNotifier>(
         builder: (context, productNotifier, child) {
@@ -241,6 +248,26 @@ class ProductPage extends StatelessWidget {
             ),
           ],
         ),
+        bottomNavigationBar: ProductBottomBar(
+            price: productNotifier.product!.price.toStringAsFixed(2),
+            onPress: () {
+              // if (accessToken == null) {
+              //   loginBottomSheet(context);
+              // } else {
+                if (context.read<ColorsSizesController>().color == '' ||
+                    context.read<ColorsSizesController>().sizes == '') {
+                  showErrorPopup(
+                    context,
+                    'Please select color and size to procced',
+                    "Error adding to cart",
+                    true,
+                  );
+                } else {
+                  print("Add to cart functionality called");
+                }
+              // }
+              
+            }),
       );
     });
   }
