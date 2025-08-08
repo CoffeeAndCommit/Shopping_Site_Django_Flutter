@@ -9,17 +9,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegistrationPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<RegistrationPage> {
   late final TextEditingController _usernameController =
       TextEditingController();
   late final TextEditingController _passwordController =
+      TextEditingController();
+late final TextEditingController _emailController =
       TextEditingController();
 
   final FocusNode _passwordNode = FocusNode();
@@ -37,11 +39,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: AppBackButton(
-          onTap: () {
-            context.go('/home');
-          },
-        ),
+        leading: const AppBackButton(),
       ),
       body: ListView(
         children: [
@@ -73,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 EmailTextField(
+                  
                   radius: 25,
                   focusNode: _passwordNode,
                   hintText: 'UserName',
@@ -90,6 +89,25 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 20.h,
                 ),
+
+                 EmailTextField(
+                  radius: 25,
+                  focusNode: _passwordNode,
+                  hintText: 'Email ',
+                  controller: _emailController,
+                  prefixIcon: const Icon(
+                    CupertinoIcons.mail,
+                    size: 20,
+                    color: MColors.kGray,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(_passwordNode);
+                  },
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
                 PasswordField(
                   radius: 25,
                   focusNode: _passwordNode,
@@ -99,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20.h,
                 ),
                 CustomButton(
-                  text: "L O G I N",
+                  text: "S I G N U P",
                   btnWidth: ScreenUtil().screenWidth,
                   btnHieght: 40,
                   radius: 20,
@@ -118,10 +136,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
             child: GestureDetector(
               onTap: () {
-                context.push('/register');
+                context.push('/login');
               },
               child: Text(
-                "Do Not Have An Account ? Sign Up",
+                "Already Have An Account ? Sign In",
                 style: appStyle(
                   12,
                   Colors.blue,
