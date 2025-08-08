@@ -2,6 +2,7 @@
 import 'package:fashion_app/common/utils/app_routes.dart';
 import 'package:fashion_app/common/utils/environment.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
+import 'package:fashion_app/src/auth/controller/password_notifier.dart';
 import 'package:fashion_app/src/categories/controller/category_notifier.dart';
 import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
 import 'package:fashion_app/src/home/controller/home_tab_notifier.dart';
@@ -29,6 +30,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => HomeTabNotifier()),
       ChangeNotifierProvider(create: (_) => ProductNotifier()),
       ChangeNotifierProvider(create: (_) => ColorsSizesController()),
+      ChangeNotifierProvider(create: (_) => PasswordNotifier()),
     ],
     child: const MyApp(),
     
