@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djoser', 
+    'rest_framework', 
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -132,4 +135,11 @@ JAZZMIN_SETTINGS = {
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "Fashion App",
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTIFICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
