@@ -39,9 +39,6 @@ class AuthNotifier extends ChangeNotifier {
         //TODO Get user extras
 
         setLoading();
-        context.go('/home');
-      } else {
-        // setLoading();
       }
     } catch (e) {
       setLoading();
@@ -52,7 +49,33 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
-  void getUser() {}
+  Stream<void> getUser(String accessToken, BuildContext context) async* {
+    try {
+      var url = Uri.parse('${Environment.appBaseUrl}/auth/users/me/');
+      var response = await http.get(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token $accessToken',
+        },
+      );
+      print(response.body);
+      if (response.statusCode == 200) {
+        Storage().setString('accessToken', response.body);
+
+        //  Get User Info
+
+        //TODO Get user extras
+
+        setLoading();
+        context.go('/home');
+      }
+    } catch (e) {
+      setLoading();
+
+      showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);
+    }
+  }
 
   void registrationFunction(String data, BuildContext context) async {
     setLoading();

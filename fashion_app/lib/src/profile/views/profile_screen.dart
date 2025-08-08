@@ -101,6 +101,11 @@ class ProfilePage extends StatelessWidget {
                   text: "Logout",
                   btnColor: MColors.kRed,
                   btnWidth: ScreenUtil().screenWidth - 40,
+                  onTap: () {
+                    print('logout');
+                    Storage().removeKey('accessToken');
+                    context.go('/home');
+                  },
                 ),
               )
             ],
