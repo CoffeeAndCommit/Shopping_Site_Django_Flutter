@@ -1,8 +1,10 @@
+import 'package:fashion_app/common/services/storage.dart';
 import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/custom_button.dart';
 import 'package:fashion_app/common/widgets/help_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
+import 'package:fashion_app/src/auth/views/login_screen.dart';
 import 'package:fashion_app/src/profile/widgets/tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +17,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? accessToken = Storage().getString('accessToken');
+    if (accessToken == null) {
+      return const LoginPage();
+    }
     return Scaffold(
       body: ListView(children: [
         Column(
