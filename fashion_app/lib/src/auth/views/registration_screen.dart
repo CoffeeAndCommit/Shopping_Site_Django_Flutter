@@ -4,10 +4,14 @@ import 'package:fashion_app/common/widgets/back_button.dart';
 import 'package:fashion_app/common/widgets/custom_button.dart';
 import 'package:fashion_app/common/widgets/email_textfield.dart';
 import 'package:fashion_app/common/widgets/password_field.dart';
+import 'package:fashion_app/src/auth/controller/auth_notifier.dart';
+import 'package:fashion_app/src/auth/models/login_model.dart';
+import 'package:fashion_app/src/auth/models/registration_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -21,8 +25,7 @@ class _LoginPageState extends State<RegistrationPage> {
       TextEditingController();
   late final TextEditingController _passwordController =
       TextEditingController();
-late final TextEditingController _emailController =
-      TextEditingController();
+  late final TextEditingController _emailController = TextEditingController();
 
   final FocusNode _passwordNode = FocusNode();
 
@@ -71,7 +74,6 @@ late final TextEditingController _emailController =
             child: Column(
               children: [
                 EmailTextField(
-                  
                   radius: 25,
                   focusNode: _passwordNode,
                   hintText: 'UserName',
@@ -89,8 +91,7 @@ late final TextEditingController _emailController =
                 SizedBox(
                   height: 20.h,
                 ),
-
-                 EmailTextField(
+                EmailTextField(
                   radius: 25,
                   focusNode: _passwordNode,
                   hintText: 'Email ',
@@ -116,12 +117,31 @@ late final TextEditingController _emailController =
                 SizedBox(
                   height: 20.h,
                 ),
-                CustomButton(
-                  text: "S I G N U P",
-                  btnWidth: ScreenUtil().screenWidth,
-                  btnHieght: 40,
-                  radius: 20,
-                )
+                context.watch<AuthNotifier>().isLoading
+                    ? const CircularProgressIndicator(
+                        backgroundColor: MColors.kPrimary,
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(MColors.kWhite),
+                      )
+                    : CustomButton(
+                        onTap: () {
+                          RegistrationModel model = RegistrationModel(
+                              username: _usernameController.text,
+                              password: _passwordController.text,
+                              email: _emailController.text);
+
+                          String data = registrationModelToJson(model);
+                          print('data$data');
+
+                          context
+                              .read<AuthNotifier>()
+                              .registrationFunction(data, context);
+                        },
+                        text: "S I G N U P",
+                        btnWidth: ScreenUtil().screenWidth,
+                        btnHieght: 40,
+                        radius: 20,
+                      )
               ],
             ),
           )

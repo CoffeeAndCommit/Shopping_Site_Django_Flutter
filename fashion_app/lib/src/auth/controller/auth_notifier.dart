@@ -1,17 +1,88 @@
+import 'dart:convert';
 
-
-
+import 'package:fashion_app/common/services/storage.dart';
+import 'package:fashion_app/common/utils/environment.dart';
+import 'package:fashion_app/common/utils/kstrings.dart';
+import 'package:fashion_app/common/widgets/error_modal.dart';
+import 'package:fashion_app/src/auth/models/auth_token_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
 
-class AuthNotifier  extends ChangeNotifier{
+class AuthNotifier extends ChangeNotifier {
+  bool _isLoading = false;
 
-
-  void loginFunction(String data) async {
-
+  bool get isLoading => _isLoading;
+  void setLoading() {
+    _isLoading = !_isLoading;
+    notifyListeners();
   }
 
-  void registrationFunction(String data) async {
+  void loginFunction(String data, BuildContext context) async {
+    setLoading();
 
+    try {
+      var url = Uri.parse('${Environment.appBaseUrl}/auth/token/login');
+      var response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: data);
+      print(response.body);
+      if (response.statusCode == 200) {
+        String accessToken = authTokenModelFromJson(response.body).authToken;
+        print('accesToken$accessToken');
+        Storage().setString('accessToken', accessToken);
+
+        //  Get User Info
+
+        //TODO Get user extras
+
+        setLoading();
+        context.go('/home');
+      } else {
+        // setLoading();
+      }
+    } catch (e) {
+      setLoading();
+
+      if (context.mounted) {
+        showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);
+      }
+    }
   }
-  
+
+  void getUser() {}
+
+  void registrationFunction(String data, BuildContext context) async {
+    setLoading();
+
+    try {
+      var url = Uri.parse('${Environment.appBaseUrl}/auth/users/');
+      var response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: data);
+      print(response.body);
+      if (response.statusCode == 201) {
+        setLoading();
+
+        // setLoading();
+      } else if (response.statusCode == 400) {
+        setLoading();
+        var data = jsonDecode(response.body);
+
+        showErrorPopup(context, data['password'][0], 'Error 400', null);
+      } else {
+        // setLoading();
+      }
+    } catch (e) {
+      setLoading();
+
+      if (context.mounted) {
+        showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);
+      }
+    }
+  }
 }
