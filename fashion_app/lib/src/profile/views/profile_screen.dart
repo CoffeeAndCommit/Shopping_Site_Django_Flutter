@@ -5,11 +5,13 @@ import 'package:fashion_app/common/widgets/custom_button.dart';
 import 'package:fashion_app/common/widgets/help_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/src/auth/views/login_screen.dart';
+import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
 import 'package:fashion_app/src/profile/widgets/tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 // import 'package:octicons/octicons.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -104,6 +106,7 @@ class ProfilePage extends StatelessWidget {
                   onTap: () {
                     print('logout');
                     Storage().removeKey('accessToken');
+                    context.read<TabIndexNotifier>().setindex(0);
                     context.go('/home');
                   },
                 ),
