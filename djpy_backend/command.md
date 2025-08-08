@@ -2,8 +2,8 @@
 2. source venv/bin/activate
 3. pip3 install django
 4. pip install --upgrade pip
-5. mkdir app_backend
-6. cd app_backend
+5. mkdir fashion_backend
+6. cd fashion_backend
 7. django-admin startproject backend .
 8. python manage.py runserver
 9. python manage.py migrate
@@ -15,6 +15,8 @@
 15. python manage.py dbshell
 16. sqlite> .table
 17. sqlite> DROP TABLE <table>;
+
+
 
 <!-- go to  baackend >>> settings and add core under installed apps -->
 
