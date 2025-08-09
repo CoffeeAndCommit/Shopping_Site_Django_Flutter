@@ -4,6 +4,8 @@ import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/custom_button.dart';
 import 'package:fashion_app/common/widgets/help_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
+import 'package:fashion_app/src/auth/controller/auth_notifier.dart';
+import 'package:fashion_app/src/auth/models/profile_model.dart';
 import 'package:fashion_app/src/auth/views/login_screen.dart';
 import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
 import 'package:fashion_app/src/profile/widgets/tile_widget.dart';
@@ -23,98 +25,102 @@ class ProfilePage extends StatelessWidget {
     if (accessToken == null) {
       return const LoginPage();
     }
-    return Scaffold(
-      body: ListView(children: [
-        Column(
-          children: [
-            SizedBox(
-              height: 30.h,
-            ),
-            const CircleAvatar(
-              radius: 35,
-              backgroundColor: MColors.kOffWhite,
-              backgroundImage: AssetImage('assets/images/avatar.jpg'),
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            ReusableText(
-                text: 'medha@gmail.com',
-                style: appStyle(
-                  11,
-                  MColors.kGray,
-                  FontWeight.normal,
-                )),
-            SizedBox(
-              height: 5.h,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: ReusableText(
-                text: 'medhavi ',
-                style: appStyle(
-                  14,
-                  MColors.kDark,
-                  FontWeight.w600,
-                ),
-              ),
-            )
-          ],
-        ),
-        SizedBox(
-          height: 30.h,
-        ),
-        Container(
-          color: MColors.kOffWhite,
-          child: Column(
+    return Consumer<AuthNotifier>(builder: (context, authNotifier, child) {
+
+      ProfileModel? userData = authNotifier.getUserData();
+      return Scaffold(
+        body: ListView(children: [
+          Column(
             children: [
-              ProfileTileWidget(
-                leading: Octicons.checklist,
-                title: 'My Orders',
-                onTap: () {
-                  context.push('/orders');
-                },
-              ),
-              ProfileTileWidget(
-                leading: MaterialIcons.location_city,
-                title: 'Shipping Address',
-                onTap: () {
-                  context.push('/address');
-                },
-              ),
-              ProfileTileWidget(
-                leading: MaterialIcons.policy,
-                title: 'Privacy Policy',
-                onTap: () {
-                  context.push('/policy');
-                },
-              ),
-              ProfileTileWidget(
-                leading: AntDesign.customerservice,
-                title: 'Help Center',
-                onTap: () => showHelpCenterBottomSheet(context),
-              ),
               SizedBox(
                 height: 30.h,
               ),
-              Padding(
-                padding: const EdgeInsets.all(14.0),
-                child: CustomButton(
-                  text: "Logout",
-                  btnColor: MColors.kRed,
-                  btnWidth: ScreenUtil().screenWidth - 40,
-                  onTap: () {
-                    print('logout');
-                    Storage().removeKey('accessToken');
-                    context.read<TabIndexNotifier>().setindex(0);
-                    context.go('/home');
-                  },
+              const CircleAvatar(
+                radius: 35,
+                backgroundColor: MColors.kOffWhite,
+                backgroundImage: AssetImage('assets/images/avatar.jpg'),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              ReusableText(
+                  text: userData?.email ?? '',
+                  style: appStyle(
+                    11,
+                    MColors.kGray,
+                    FontWeight.normal,
+                  )),
+              SizedBox(
+                height: 5.h,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 15.w),
+                child: ReusableText(
+                  text: userData?.username ?? '',
+                  style: appStyle(
+                    14,
+                    MColors.kDark,
+                    FontWeight.w600,
+                  ),
                 ),
               )
             ],
           ),
-        )
-      ]),
-    );
+          SizedBox(
+            height: 30.h,
+          ),
+          Container(
+            color: MColors.kOffWhite,
+            child: Column(
+              children: [
+                ProfileTileWidget(
+                  leading: Octicons.checklist,
+                  title: 'My Orders',
+                  onTap: () {
+                    context.push('/orders');
+                  },
+                ),
+                ProfileTileWidget(
+                  leading: MaterialIcons.location_city,
+                  title: 'Shipping Address',
+                  onTap: () {
+                    context.push('/address');
+                  },
+                ),
+                ProfileTileWidget(
+                  leading: MaterialIcons.policy,
+                  title: 'Privacy Policy',
+                  onTap: () {
+                    context.push('/policy');
+                  },
+                ),
+                ProfileTileWidget(
+                  leading: AntDesign.customerservice,
+                  title: 'Help Center',
+                  onTap: () => showHelpCenterBottomSheet(context),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: CustomButton(
+                    text: "Logout",
+                    btnColor: MColors.kRed,
+                    btnWidth: ScreenUtil().screenWidth - 40,
+                    onTap: () {
+                      print('logout');
+                      Storage().removeKey('accessToken');
+                      context.read<TabIndexNotifier>().setindex(0);
+                      context.go('/home');
+                    },
+                  ),
+                )
+              ],
+            ),
+          )
+        ]),
+      );
+    });
   }
 }

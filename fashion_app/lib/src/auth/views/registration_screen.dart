@@ -117,7 +117,7 @@ class _LoginPageState extends State<RegistrationPage> {
                 SizedBox(
                   height: 20.h,
                 ),
-                context.watch<AuthNotifier>().isLoading
+                context.watch<AuthNotifier>().isRegisLoading
                     ? const CircularProgressIndicator(
                         backgroundColor: MColors.kPrimary,
                         valueColor:
