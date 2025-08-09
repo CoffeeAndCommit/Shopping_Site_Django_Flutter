@@ -142,8 +142,19 @@ JAZZMIN_SETTINGS = {
 }
 
 
+# For Djoser
+DJOSER = {
+    'LOGIN_FIELD': 'username',
+    'USER_ID_FIELD': 'id',
+    'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
+}
+
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTIFICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }

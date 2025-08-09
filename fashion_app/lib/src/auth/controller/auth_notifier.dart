@@ -5,9 +5,12 @@ import 'package:fashion_app/common/utils/environment.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
 import 'package:fashion_app/common/widgets/error_modal.dart';
 import 'package:fashion_app/src/auth/models/auth_token_model.dart';
+import 'package:fashion_app/src/auth/models/profile_model.dart';
+import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class AuthNotifier extends ChangeNotifier {
   bool _isLoading = false;
@@ -35,13 +38,12 @@ class AuthNotifier extends ChangeNotifier {
         Storage().setString('accessToken', accessToken);
 
         //  Get User Info
+        getUser(accessToken, context);
 
+        print('getuser called');
         //TODO Get user extras
 
         setLoading();
-        context.go('/home');
-      } else {
-        // setLoading();
       }
     } catch (e) {
       setLoading();
@@ -52,7 +54,34 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
-  void getUser() {}
+  void getUser(String accessToken, BuildContext context) async {
+    try {
+      var url = Uri.parse('${Environment.appBaseUrl}/auth/users/me/');
+      var response = await http.get(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token $accessToken',
+        },
+      );
+      print('get user function');
+
+      if (response.statusCode == 200) {
+        print('user info');
+
+        //  Get User Info
+
+        //TODO Get user extras
+
+        setLoading();
+        context.read<TabIndexNotifier>().setindex(0);
+      }
+    } catch (e) {
+      setLoading();
+
+      showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);
+    }
+  }
 
   void registrationFunction(String data, BuildContext context) async {
     setLoading();
@@ -85,4 +114,7 @@ class AuthNotifier extends ChangeNotifier {
       }
     }
   }
+
+
+
 }
