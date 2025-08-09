@@ -73,6 +73,9 @@ class AuthNotifier extends ChangeNotifier {
 
         //TODO Get user extras
 
+        Storage().setString('accessToken', accessToken);
+        Storage().setString(accessToken, response.body);
+
         setLoading();
         context.read<TabIndexNotifier>().setindex(0);
       }
@@ -115,6 +118,14 @@ class AuthNotifier extends ChangeNotifier {
     }
   }
 
+  ProfileModel? getUserData() {
+    String? accessToken = Storage().getString('accessToken');
 
+    if (accessToken != null) {
+      var data = Storage().getString(accessToken);
 
+      return profileModelFromJson(data!);
+    }
+    return null;
+  }
 }
