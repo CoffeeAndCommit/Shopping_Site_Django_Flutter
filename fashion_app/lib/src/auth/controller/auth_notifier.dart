@@ -14,15 +14,22 @@ import 'package:provider/provider.dart';
 
 class AuthNotifier extends ChangeNotifier {
   bool _isLoading = false;
+  bool _isRegisLoading = false;
+
+  bool get isRegisLoading => _isRegisLoading;
+  void setRegLoading() {
+    _isRegisLoading = !_isRegisLoading;
+    notifyListeners();
+  }
 
   bool get isLoading => _isLoading;
-  void setLoading() {
-    _isLoading = !_isLoading;
+  void setLoading(bool v) {
+    _isLoading = v;
     notifyListeners();
   }
 
   void loginFunction(String data, BuildContext context) async {
-    setLoading();
+    setLoading(true);
 
     try {
       var url = Uri.parse('${Environment.appBaseUrl}/auth/token/login');
@@ -43,10 +50,12 @@ class AuthNotifier extends ChangeNotifier {
         print('getuser called');
         //TODO Get user extras
 
-        setLoading();
+        setLoading(false);
+      } else {
+        setLoading(false);
       }
     } catch (e) {
-      setLoading();
+      setLoading(false);
 
       if (context.mounted) {
         showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);
@@ -76,18 +85,18 @@ class AuthNotifier extends ChangeNotifier {
         Storage().setString('accessToken', accessToken);
         Storage().setString(accessToken, response.body);
 
-        setLoading();
+        // setLoading();
         context.read<TabIndexNotifier>().setindex(0);
       }
     } catch (e) {
-      setLoading();
+      // setLoading();
 
       showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);
     }
   }
 
   void registrationFunction(String data, BuildContext context) async {
-    setLoading();
+    setRegLoading();
 
     try {
       var url = Uri.parse('${Environment.appBaseUrl}/auth/users/');
@@ -98,11 +107,12 @@ class AuthNotifier extends ChangeNotifier {
           body: data);
       print(response.body);
       if (response.statusCode == 201) {
-        setLoading();
-
+        setRegLoading();
+        // showErrorPopup(context, AppText.kSuccessRegister, 'Success', true);
+        context.pop();
         // setLoading();
       } else if (response.statusCode == 400) {
-        setLoading();
+        setRegLoading();
         var data = jsonDecode(response.body);
 
         showErrorPopup(context, data['password'][0], 'Error 400', null);
@@ -110,7 +120,7 @@ class AuthNotifier extends ChangeNotifier {
         // setLoading();
       }
     } catch (e) {
-      setLoading();
+      setRegLoading();
 
       if (context.mounted) {
         showErrorPopup(context, AppText.kErrorLogin, e.toString(), false);

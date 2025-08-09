@@ -14,6 +14,7 @@ class AppText {
   static const String kVerify = 'Verification Code';
   static const String kVerifyText = 'Please enter the code we just sent to email';
   static const String kSearch = 'Search';
+  static const String kSuccessRegister = 'Successfully Registered';
 
   static const String kProfilePic = 'https://d326fntlu7tb1e.cloudfront.net/uploads/0856609b-21e8-4e73-85cb-1f9a93de81f4-avatar.png';
   
