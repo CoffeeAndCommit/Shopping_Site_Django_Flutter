@@ -5,6 +5,7 @@ import 'package:fashion_app/common/utils/environment.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
 import 'package:fashion_app/common/widgets/error_modal.dart';
 import 'package:fashion_app/src/auth/models/auth_token_model.dart';
+import 'package:fashion_app/src/auth/models/profile_model.dart';
 import 'package:fashion_app/src/entrypoint/controller/bottom_tab_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -74,7 +75,6 @@ class AuthNotifier extends ChangeNotifier {
 
         setLoading();
         context.read<TabIndexNotifier>().setindex(0);
-   
       }
     } catch (e) {
       setLoading();
@@ -114,4 +114,7 @@ class AuthNotifier extends ChangeNotifier {
       }
     }
   }
+
+
+
 }
