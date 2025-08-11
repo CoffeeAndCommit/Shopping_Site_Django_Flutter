@@ -41,9 +41,11 @@ class ProductList(generics.ListAPIView):
     serializer_class = serializers.ProductSerializer
     def get_queryset(self):
         queryset =  models.Product.objects.all()
+        permission_classes = [AllowAny]
         queryset = queryset.annotate(random_order = Count('id'))
         queryset = list(queryset)
         random.shuffle(queryset)
+
         return queryset[:20]
 
 class PopularProductsList(generics.ListAPIView):
