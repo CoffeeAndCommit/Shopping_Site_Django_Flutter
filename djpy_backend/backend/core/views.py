@@ -36,9 +36,6 @@ class BrandList(generics.ListAPIView):
     serializer_class = serializers.BrandSerializer
     queryset = models.Brand.objects.all()
 
-
-
-
 class ProductList(generics.ListAPIView):
 
     serializer_class = serializers.ProductSerializer
@@ -49,8 +46,6 @@ class ProductList(generics.ListAPIView):
         random.shuffle(queryset)
         return queryset[:20]
 
-
-
 class PopularProductsList(generics.ListAPIView):
     serializer_class = serializers.ProductSerializer
     def get_queryset(self):
@@ -59,8 +54,6 @@ class PopularProductsList(generics.ListAPIView):
         queryset = list(queryset)
         random.shuffle(queryset)
         return queryset[:20]
-
-
 
 class ProductListByClothesType(generics.ListAPIView):
 
@@ -97,8 +90,19 @@ class SimilarProduct(APIView):
              return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'No products found'}, status=status.HTTP_404_NOT_FOUND)
-        
-     
+
+class SearchProductByTitle(APIView):
+    def get(self, request):
+        query = request.query_params.get('q', None)
+
+        if(query):
+            products =  models.Product.objects.filter(title__icontains=query)()
+
+            serializer = serializers.ProductSerializer(products, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'No products found'}, status=status.HTTP_404_NOT_FOUND)
+
 
            
 
