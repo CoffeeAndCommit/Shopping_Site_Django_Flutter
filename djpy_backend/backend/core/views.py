@@ -6,7 +6,7 @@ from itertools import product
 from rest_framework import generics,  status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from rest_framework.permissions import AllowAny
 from . import models
 from . import serializers
 
@@ -17,11 +17,13 @@ import random
 class CategoryList(generics.ListAPIView):
 
     serializer_class = serializers.CategorySerializer
+    permission_classes = [AllowAny]
     queryset = models.Category.objects.all()
 
 class HomeCategoryList(generics.ListAPIView):
 
     serializer_class = serializers.CategorySerializer
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         queryset =  models.Category.objects.all()
@@ -34,20 +36,26 @@ class HomeCategoryList(generics.ListAPIView):
 class BrandList(generics.ListAPIView):
 
     serializer_class = serializers.BrandSerializer
+    permission_classes = [AllowAny]
     queryset = models.Brand.objects.all()
 
 class ProductList(generics.ListAPIView):
+   
 
     serializer_class = serializers.ProductSerializer
+    permission_classes = [AllowAny]
     def get_queryset(self):
         queryset =  models.Product.objects.all()
+       
         queryset = queryset.annotate(random_order = Count('id'))
         queryset = list(queryset)
         random.shuffle(queryset)
+
         return queryset[:20]
 
 class PopularProductsList(generics.ListAPIView):
     serializer_class = serializers.ProductSerializer
+    permission_classes = [AllowAny]
     def get_queryset(self):
         queryset =  models.Product.objects.filter(rating__gt=4, rating__lt=5)()
         queryset = queryset.annotate(random_order = Count('id'))
@@ -55,15 +63,16 @@ class PopularProductsList(generics.ListAPIView):
         random.shuffle(queryset)
         return queryset[:20]
 
-class ProductListByClothesType(generics.ListAPIView):
+class ProductListByClothesType(APIView):
 
     serializer_class = serializers.ProductSerializer
-    def get_queryset(self):
+    permission_classes = [AllowAny]
+    def get(self,request):
 
         query = request.query_params.get('clothes_type', None)
 
         if query :
-             queryset =  models.Product.objects.filter(clothes_type=query)()
+             queryset =  models.Product.objects.filter(clothes_type=query)
              queryset = queryset.annotate(random_order = Count('id'))
 
 
@@ -73,10 +82,12 @@ class ProductListByClothesType(generics.ListAPIView):
 
              serializer = serializers.ProductSerializer(limited_products, many=True)
              return Response(serializer.data, status=status.HTTP_200_OK)
+            #  return limited_products
         else:
             return Response({'message': 'No products found'}, status=status.HTTP_404_NOT_FOUND)
             
 class SimilarProduct(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         query = request.query_params.get('category', None)
 
@@ -92,6 +103,7 @@ class SimilarProduct(APIView):
             return Response({'message': 'No products found'}, status=status.HTTP_404_NOT_FOUND)
 
 class SearchProductByTitle(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         query = request.query_params.get('q', None)
 
@@ -104,6 +116,7 @@ class SearchProductByTitle(APIView):
             return Response({'message': 'No products found'}, status=status.HTTP_404_NOT_FOUND)
 
 class FilterProductsByCategory(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         query = request.query_params.get('category', None)
 
