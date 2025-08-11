@@ -103,7 +103,17 @@ class SearchProductByTitle(APIView):
         else:
             return Response({'message': 'No products found'}, status=status.HTTP_404_NOT_FOUND)
 
+class FilterProductsByCategory(APIView):
+    def get(self, request):
+        query = request.query_params.get('category', None)
 
+        if(query):
+            products =  models.Product.objects.filter(category=query)
+
+            serializer = serializers.ProductSerializer(products, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'No qury providede'}, status=status.HTTP_404_NOT_FOUND)
            
 
         
