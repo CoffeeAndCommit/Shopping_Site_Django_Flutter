@@ -1,6 +1,7 @@
 import 'package:fashion_app/common/services/storage.dart';
 import 'package:fashion_app/common/widgets/login_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/shimmers/list_shimmer.dart';
+import 'package:fashion_app/const/resource.dart';
 import 'package:fashion_app/src/categories/controller/category_notifier.dart';
 import 'package:fashion_app/src/categories/hook/fetch_product_bycategory.dart';
 import 'package:fashion_app/src/products/widgets/staggered_tile_widget.dart';
@@ -31,30 +32,48 @@ class ProductsByCategory extends HookWidget {
         body: ListShimmer(),
       );
     }
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.h),
-      child: StaggeredGrid.count(
-          crossAxisCount: 4,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          children: List.generate(products.length, (i) {
-            final double mainAxisCellCount = i.isEven ? 2.17 : 2.4;
-            final product = products[i];
-            return StaggeredGridTile.count(
-                crossAxisCellCount: 2,
-                mainAxisCellCount: mainAxisCellCount,
-                child: StaggeredTileWidget(
-                  product: product,
-                  i: i,
-                  onTap: () {
-                    if (accessToken == null) {
-                      loginBottomSheet(context);
-                    } else {
-                      //  Handle wishlist functionality
-                    }
-                  },
-                ));
-          })),
-    );
+    return products.isEmpty
+        ? EmptyWidget()
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.h),
+            child: StaggeredGrid.count(
+                crossAxisCount: 4,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                children: List.generate(products.length, (i) {
+                  final double mainAxisCellCount = i.isEven ? 2.17 : 2.4;
+                  final product = products[i];
+                  return StaggeredGridTile.count(
+                      crossAxisCellCount: 2,
+                      mainAxisCellCount: mainAxisCellCount,
+                      child: StaggeredTileWidget(
+                        product: product,
+                        i: i,
+                        onTap: () {
+                          if (accessToken == null) {
+                            loginBottomSheet(context);
+                          } else {
+                            //  Handle wishlist functionality
+                          }
+                        },
+                      ));
+                })),
+          );
+  }
+}
+
+class EmptyWidget extends StatelessWidget {
+  const EmptyWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Image.asset(
+          My.ASSETS_IMAGES_EMPTY_PNG,
+          height: ScreenUtil().screenHeight * .3,
+        ),
+      );
   }
 }

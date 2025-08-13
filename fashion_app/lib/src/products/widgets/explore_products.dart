@@ -21,14 +21,6 @@ class ExploreProducts extends HookWidget {
     final product = results.products;
     final isLoading = results.isLoading;
     final error = results.error;
-    final refetch = results.refetch;
-
-
-    context.read<HomeTabNotifier>().setRefetch(()=> refetch!());
-
-
-
-    
 
     if (isLoading) {
       return Center(

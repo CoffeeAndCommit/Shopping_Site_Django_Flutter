@@ -10,6 +10,7 @@ import 'package:fashion_app/src/home/controller/home_tab_notifier.dart';
 import 'package:fashion_app/src/onboarding/controller/onboarding_notifier.dart';
 import 'package:fashion_app/src/products/controllers/colors_sizes_controller.dart';
 import 'package:fashion_app/src/products/controllers/product_notifier.dart';
+import 'package:fashion_app/src/search/controllers/search_notifiers.dart';
 import 'package:fashion_app/src/splashscreen/views/spalshscreen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -33,6 +34,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => ColorsSizesController()),
       ChangeNotifierProvider(create: (_) => PasswordNotifier()),
       ChangeNotifierProvider(create: (_) => AuthNotifier()),
+      ChangeNotifierProvider(create: (_) => SearchNotifiers(  )),
     ],
     child: const MyApp(),
     
