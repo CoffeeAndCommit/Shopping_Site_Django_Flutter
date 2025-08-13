@@ -27,24 +27,23 @@ FetchProducts fetchProducts(QueryType queryType) {
           url = Uri.parse('${Environment.appBaseUrl}/api/products/popular/');
           break;
         case QueryType.unisex:
-          url = Uri.parse('${Environment.appBaseUrl}/api/products/byType/?clothesType=${queryType.name}');
+          url = Uri.parse(
+              '${Environment.appBaseUrl}/api/products/byType/?clothesType=${queryType.name}');
           break;
 
         case QueryType.men:
           url = Uri.parse(
               '${Environment.appBaseUrl}/api/products/byType/?clothesType=${queryType.name}');
           break;
-          case QueryType.women:
+        case QueryType.women:
           url = Uri.parse(
               '${Environment.appBaseUrl}/api/products/byType/?clothesType=${queryType.name}');
           break;
 
-          case QueryType.kids:
+        case QueryType.kids:
           url = Uri.parse(
               '${Environment.appBaseUrl}/api/products/byType/?clothesType=${queryType.name}');
           break;
-
-    
       }
 
       final response = await http.get(url);
@@ -60,11 +59,13 @@ FetchProducts fetchProducts(QueryType queryType) {
 
   useEffect(() {
     fetchData();
-  }, []);
+    return null;
+  }, [queryType.index]);
 
   void refetch() {
     isLoading.value = true;
     fetchData();
+    print("REFETCH RAN");
   }
 
   return FetchProducts(
