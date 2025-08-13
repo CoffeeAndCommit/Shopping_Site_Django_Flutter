@@ -12,7 +12,7 @@ class NotificationWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (Storage().getString('accesstoken') == null) {
-          print("User not logged in");
+
           loginBottomSheet(context);
         } else {
           context.push('/notifications');

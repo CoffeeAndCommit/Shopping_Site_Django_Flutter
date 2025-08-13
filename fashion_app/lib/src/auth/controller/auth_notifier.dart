@@ -38,16 +38,16 @@ class AuthNotifier extends ChangeNotifier {
             'Content-Type': 'application/json',
           },
           body: data);
-      print(response.body);
+
       if (response.statusCode == 200) {
         String accessToken = authTokenModelFromJson(response.body).authToken;
-        print('accesToken$accessToken');
+   
         Storage().setString('accessToken', accessToken);
 
         //  Get User Info
         getUser(accessToken, context);
 
-        print('getuser called');
+  
         //TODO Get user extras
 
         setLoading(false);
@@ -73,10 +73,10 @@ class AuthNotifier extends ChangeNotifier {
           'Authorization': 'Token $accessToken',
         },
       );
-      print('get user function');
+  
 
       if (response.statusCode == 200) {
-        print('user info');
+
 
         //  Get User Info
 
@@ -105,7 +105,6 @@ class AuthNotifier extends ChangeNotifier {
             'Content-Type': 'application/json',
           },
           body: data);
-      print(response.body);
       if (response.statusCode == 201) {
         setRegLoading();
         // showErrorPopup(context, AppText.kSuccessRegister, 'Success', true);

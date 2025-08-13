@@ -7,7 +7,7 @@ class OnboardingNotifier with ChangeNotifier {
 
   set selectedPage(int page) {
     _selectedPage = page;
-    print('selectedPage: $_selectedPage');
+   
     notifyListeners();
   }
 }

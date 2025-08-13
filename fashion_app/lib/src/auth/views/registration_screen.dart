@@ -131,8 +131,7 @@ class _LoginPageState extends State<RegistrationPage> {
                               email: _emailController.text);
 
                           String data = registrationModelToJson(model);
-                          print('data$data');
-
+                         
                           context
                               .read<AuthNotifier>()
                               .registrationFunction(data, context);

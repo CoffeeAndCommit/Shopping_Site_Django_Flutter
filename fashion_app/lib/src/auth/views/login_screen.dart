@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
 
                           String data = loginModelToJson(model);
-                          print('data$data');
+                     
 
                           context
                               .read<AuthNotifier>()

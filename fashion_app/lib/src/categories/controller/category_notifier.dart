@@ -9,6 +9,7 @@ class CategoryNotifier extends ChangeNotifier {
 
   void setCategory(String value, int id) {
     category = value;
+    this.id = id;
     notifyListeners();
   }
 

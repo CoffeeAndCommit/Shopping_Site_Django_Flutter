@@ -62,7 +62,7 @@ class AppEntryPoint extends StatelessWidget {
                       ),
                       currentIndex: tabindexnotifier.index,
                       onTap: (value) {
-                        print(value);
+              
                         tabindexnotifier.setindex(value);
                         // context.push(routePaths[value]);
                       },

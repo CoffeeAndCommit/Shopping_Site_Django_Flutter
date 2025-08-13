@@ -30,12 +30,12 @@ class _HomeSliderState extends State<HomeSlider> {
             child: ImageSlideshow(
               indicatorColor: MColors.kPrimary,
               onPageChanged: (value) {
-                print(value);
+          
               },
               autoPlayInterval: 3000,
               isLoop: true,
               children: List.generate(images.length, (index) {
-                  print(images[index]);
+                 
                 return CachedNetworkImage(
                   placeholder: placeholder,
                   imageUrl: images[index],

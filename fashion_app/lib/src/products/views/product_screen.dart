@@ -4,7 +4,6 @@ import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/back_button.dart';
 import 'package:fashion_app/common/widgets/error_modal.dart';
-import 'package:fashion_app/common/widgets/login_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/const/constants.dart' show placeholder, errorWidget;
 import 'package:fashion_app/src/products/controllers/colors_sizes_controller.dart';
@@ -28,8 +27,7 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? accessToken = Storage().getString('accessToken');
-    print(accessToken);
-    print(context.read<ProductNotifier>().product!.title);
+
     return Consumer<ProductNotifier>(
         builder: (context, productNotifier, child) {
       return Scaffold(
@@ -66,13 +64,12 @@ class ProductPage extends StatelessWidget {
                   child: ImageSlideshow(
                     indicatorColor: MColors.kPrimary,
                     onPageChanged: (value) {
-                      print(value);
+                    
                     },
                     autoPlayInterval: 7000,
                     isLoop: productNotifier.product!.imageUrls.length > 1,
                     children: List.generate(
                         productNotifier.product!.imageUrls.length, (index) {
-                      // print(images[index]);
                       return CachedNetworkImage(
                         placeholder: placeholder,
                         imageUrl: productNotifier.product!.imageUrls[index],

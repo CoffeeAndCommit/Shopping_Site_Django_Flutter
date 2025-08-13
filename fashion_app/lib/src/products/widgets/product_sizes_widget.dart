@@ -14,7 +14,7 @@ class ProductSizesWidget extends StatelessWidget {
   
     return Consumer<ColorsSizesController>(
         builder: (context, colorsSizesController, child) {
-            print('select sizes2');
+         
       return 
          SizedBox(
           width: MediaQuery.of(context).size.width,

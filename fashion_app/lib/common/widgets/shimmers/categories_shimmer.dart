@@ -16,11 +16,19 @@ class CatergoriesShimmer extends StatelessWidget {
           itemCount: 6,
           itemBuilder: (context, index) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ShimmerWidget(
-                    shimmerWidth: 70.w,
-                    shimmerHieght: 60.h,
-                    shimmerRadius: 12),
+                Row(
+                  children: [
+                    ShimmerWidget(
+                        shimmerWidth: 30.w,
+                        shimmerHieght: 30.h,
+                        shimmerRadius: 12, 
+                        ),
+                        SizedBox(width: 20.w,)
+                  ],
+                ),
               ],
             );
           }),

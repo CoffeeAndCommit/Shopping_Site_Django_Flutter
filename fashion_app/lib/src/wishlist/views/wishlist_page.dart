@@ -27,8 +27,8 @@ class WishlistPage extends StatelessWidget {
               FontWeight.bold,
             )),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: ExploreProducts(),
       ),
     );
