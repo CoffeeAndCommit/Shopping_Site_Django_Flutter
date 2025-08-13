@@ -31,7 +31,7 @@ class Product(models.Model):
     description = models.TextField(max_length=555)
     is_featured = models.BooleanField(default=False)
     clothes_type = models.CharField(max_length=255, default='Unisex')
-    rating = models.FloatField(blank= False, default=0.0)
+    ratings = models.FloatField(blank= False, default=0.0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     color= models.JSONField(blank=True, )
