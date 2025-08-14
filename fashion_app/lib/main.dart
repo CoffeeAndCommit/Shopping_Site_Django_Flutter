@@ -1,4 +1,3 @@
-
 import 'package:fashion_app/common/utils/app_routes.dart';
 import 'package:fashion_app/common/utils/environment.dart';
 import 'package:fashion_app/common/utils/kstrings.dart';
@@ -21,24 +20,43 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: Environment.fileName);
-  // initialize storage 
+  // initialize storage
   await GetStorage.init();
   // Load the correct environment in flutter
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => OnboardingNotifier()),
-      ChangeNotifierProvider(create: (_) => TabIndexNotifier()),
-      ChangeNotifierProvider(create: (_) => CategoryNotifier()),
-      ChangeNotifierProvider(create: (_) => HomeTabNotifier()),
-      ChangeNotifierProvider(create: (_) => ProductNotifier()),
-      ChangeNotifierProvider(create: (_) => ColorsSizesController()),
-      ChangeNotifierProvider(create: (_) => PasswordNotifier()),
-      ChangeNotifierProvider(create: (_) => AuthNotifier()),
-      ChangeNotifierProvider(create: (_) => SearchNotifiers(  )),
-    ],
-    child: const MyApp(),
-    
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => OnboardingNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TabIndexNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CategoryNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => HomeTabNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProductNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ColorsSizesController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PasswordNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SearchNotifiers(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -67,6 +85,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
