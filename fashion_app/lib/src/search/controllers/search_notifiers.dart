@@ -18,6 +18,7 @@ class SearchNotifiers with ChangeNotifier {
   List<Products> get results => _results;
 
   void setResults(List<Products> value) {
+    print('in setter$value');
     _results = value;
     notifyListeners();
   }
@@ -58,11 +59,14 @@ class SearchNotifiers with ChangeNotifier {
     Uri url = Uri.parse(
         '${Environment.appBaseUrl}/api/products/search/?q=$searchKey');
 
+    print("serach notifier is being called ");
     try {
       var res = await http.get(url);
 
       if (res.statusCode == 200) {
+        print('res.body${res.body}');
         var data = productsFromJson(res.body);
+        print('data$data');
         setResults(data);
 
         setLoading(false);

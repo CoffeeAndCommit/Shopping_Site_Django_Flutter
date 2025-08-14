@@ -3,6 +3,7 @@ import 'dart:convert';
 List<Products> productsFromJson(String str) =>
     List<Products>.from(json.decode(str).map((x) => Products.fromJson(x)));
 
+// ignore: non_constant_identifier_names
 String ProductssToJson(List<Products> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -43,9 +44,11 @@ class Products {
         price: json["price"]?.toDouble(),
         description: json["description"],
         isFeatured: json["is_featured"],
-        clothesType: json["clothesType"],
+        // clothesType: json["clothesType"],
+        clothesType: json["clothes_type"], // fixed
         ratings: json["ratings"]?.toDouble(),
-        colors: List<String>.from(json["colors"].map((x) => x)),
+        // colors: List<String>.from(json["colors"].map((x) => x)),
+          colors: List<String>.from(json["color"].map((x) => x)), // fixed
         imageUrls: List<String>.from(json["imageUrls"].map((x) => x)),
         sizes: List<String>.from(json["sizes"].map((x) => x)),
         createdAt: DateTime.parse(json["created_at"]),
