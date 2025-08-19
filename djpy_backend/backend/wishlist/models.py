@@ -18,9 +18,9 @@ class WishList(models.Model):
 
 
 
-    class Meta:
-        unique_together = ('user', 'product')
-        verbose_name_plural = "Wishlist"
+    # class Meta:
+    #     unique_together = ('user', 'product')
+    #     verbose_name_plural = "Wishlist"
 
 
 
