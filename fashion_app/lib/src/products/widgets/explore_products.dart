@@ -18,7 +18,7 @@ class ExploreProducts extends HookWidget {
   Widget build(BuildContext context) {
     String? accessToken = Storage().getString('accessToken');
     final results = fetchProducts(context.watch<HomeTabNotifier>().queryType);
-    final product = results.products;
+    final product =  results.products;
     final isLoading = results.isLoading;
     final error = results.error;
 
