@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from . import models, serializers
-from djpy_backend.backend import wishlist
+# from djpy_backend.backend import wishlist
 
 class GetWishList(generics.ListAPIView):
     serializer_class = serializers.WishListSerializer
@@ -17,7 +17,9 @@ class GetWishList(generics.ListAPIView):
         # userId = self.request.query_params.get('userId', None)
         # if userId is not None:
         #     return models.WishList.objects.filter(userId=userId)
-        return models.WishList.objects.filter(userId = self.request.user)
+        if self.request.user.is_authenticated:
+            return models.WishList.objects.filter(user=self.request.user)
+        return models.WishList.objects.none() 
 
 
 
