@@ -12,6 +12,7 @@ from . import models, serializers
 class GetWishList(generics.ListAPIView):
     serializer_class = serializers.WishListSerializer
     permission_classes = [AllowAny]
+    # permission_classes = [Auth]
 
     def get_queryset(self):
         # userId = self.request.query_params.get('userId', None)

@@ -5,6 +5,7 @@ import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/src/auth/views/login_screen.dart';
 import 'package:fashion_app/src/products/widgets/explore_products.dart';
+import 'package:fashion_app/src/wishlist/wishlist/wishlist.dart';
 import 'package:flutter/material.dart';
 
 class WishlistPage extends StatelessWidget {
@@ -29,7 +30,7 @@ class WishlistPage extends StatelessWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
-        child: ExploreProducts(
+        child: WishlistWidget(
           
         ),
 
