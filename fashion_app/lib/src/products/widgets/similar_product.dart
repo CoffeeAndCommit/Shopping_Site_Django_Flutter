@@ -5,6 +5,7 @@ import 'package:fashion_app/src/categories/widgets/product_by_category.dart';
 import 'package:fashion_app/src/products/controllers/product_notifier.dart';
 import 'package:fashion_app/src/products/hooks/fetch_similar_products.dart';
 import 'package:fashion_app/src/products/widgets/staggered_tile_widget.dart';
+import 'package:fashion_app/src/wishlist/controllers/wishlist_notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,6 +53,9 @@ class SimilarProduct extends HookWidget {
                             loginBottomSheet(context);
                           } else {
                             //  Handle wishlist functionality
+                               context
+                                .read<WishlistNotifiers>()
+                                .addRemoveWishlist(product.id, () {});
                           }
                         },
                       ));

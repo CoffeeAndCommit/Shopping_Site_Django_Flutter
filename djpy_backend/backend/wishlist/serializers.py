@@ -11,7 +11,6 @@ class WishListSerializer(serializers.ModelSerializer):
     ratings = serializers.ReadOnlyField(source= 'product.ratings')
     category = serializers.ReadOnlyField(source= 'product.category.id')
     brand = serializers.ReadOnlyField(source= 'product.brand.id')
-    brand = serializers.ReadOnlyField(source= 'product.brand')
     color = serializers.ReadOnlyField(source= 'product.color')
     sizes = serializers.ReadOnlyField(source= 'product.sizes')
     imageUrls = serializers.ReadOnlyField(source= 'product.imageUrls')

@@ -11,6 +11,7 @@ import 'package:fashion_app/src/products/controllers/colors_sizes_controller.dar
 import 'package:fashion_app/src/products/controllers/product_notifier.dart';
 import 'package:fashion_app/src/search/controllers/search_notifiers.dart';
 import 'package:fashion_app/src/splashscreen/views/spalshscreen_page.dart';
+import 'package:fashion_app/src/wishlist/controllers/wishlist_notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,6 +53,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => SearchNotifiers(),
+        ),
+         ChangeNotifierProvider(
+          create: (_) => WishlistNotifiers(),
         ),
       ],
       child: const MyApp(),

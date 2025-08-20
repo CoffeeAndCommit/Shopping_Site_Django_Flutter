@@ -19,9 +19,14 @@ FetchProducts fetchWishlist() {
     try {
       Uri uri = Uri.parse('${Environment.appBaseUrl}/api/wishlist/me/');
       String? accessToken = Storage().getString('accessToken');
+      print('authtoken$accessToken');
 
       final response = await http.get(
         uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token $accessToken',
+        },
       );
 
       print('response status code $response');

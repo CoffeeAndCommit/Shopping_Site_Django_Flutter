@@ -1,17 +1,15 @@
-
-
-
-
 import 'package:fashion_app/common/services/storage.dart';
 import 'package:fashion_app/common/widgets/empty_screen_widget.dart';
 import 'package:fashion_app/common/widgets/login_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/shimmers/list_shimmer.dart';
 import 'package:fashion_app/src/products/widgets/staggered_tile_widget.dart';
+import 'package:fashion_app/src/wishlist/controllers/wishlist_notifiers.dart';
 import 'package:fashion_app/src/wishlist/hooks/fetchwishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 class WishlistWidget extends HookWidget {
   const WishlistWidget({super.key});
@@ -23,6 +21,7 @@ class WishlistWidget extends HookWidget {
     final products = results.products;
     final isLoading = results.isLoading;
     final error = results.error;
+    final refetch = results.refetch;
 
     if (isLoading) {
       return Center(
@@ -36,35 +35,35 @@ class WishlistWidget extends HookWidget {
     }
 
     return products.isEmpty
-        ?const EmptyScreenWidget()
-        :
-    
-    Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.h),
-      child: StaggeredGrid.count(
-          crossAxisCount: 4,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          children: List.generate(products.length, (i) {
-            final double mainAxisCellCount = i.isEven ? 2.17 : 2.4;
-            final product = products[i];
-            return StaggeredGridTile.count(
-                crossAxisCellCount: 2,
-                mainAxisCellCount: mainAxisCellCount,
-                child: StaggeredTileWidget(
-                  product: product,
-                  i: i,
-                  onTap: () {
-                    if (accessToken == null) {
-                      loginBottomSheet(context);
-                    } else {
-                      //  Handle wishlist functionality
-                    }
-                  },
-                ));
-          })),
-    );
+        ? const EmptyScreenWidget()
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.h),
+            child: StaggeredGrid.count(
+                crossAxisCount: 4,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                children: List.generate(products.length, (i) {
+                  final double mainAxisCellCount = i.isEven ? 2.17 : 2.4;
+                  final product = products[i];
+                  return StaggeredGridTile.count(
+                      crossAxisCellCount: 2,
+                      mainAxisCellCount: mainAxisCellCount,
+                      child: StaggeredTileWidget(
+                        product: product,
+                        i: i,
+                        onTap: () {
+                          if (accessToken == null) {
+                            loginBottomSheet(context);
+                          } else {
+                            //  Handle wishlist functionality
+                            context.read<WishlistNotifiers>().addRemoveWishlist(
+                                  product.id,
+                                  refetch,
+                                );
+                          }
+                        },
+                      ));
+                })),
+          );
   }
-
-
 }
