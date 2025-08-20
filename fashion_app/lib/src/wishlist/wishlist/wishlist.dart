@@ -1,40 +1,41 @@
 import 'package:fashion_app/common/services/storage.dart';
+import 'package:fashion_app/common/widgets/empty_screen_widget.dart';
 import 'package:fashion_app/common/widgets/login_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/shimmers/list_shimmer.dart';
-import 'package:fashion_app/const/resource.dart';
-import 'package:fashion_app/src/categories/controller/category_notifier.dart';
-import 'package:fashion_app/src/categories/hook/fetch_product_bycategory.dart';
 import 'package:fashion_app/src/products/widgets/staggered_tile_widget.dart';
 import 'package:fashion_app/src/wishlist/controllers/wishlist_notifiers.dart';
+import 'package:fashion_app/src/wishlist/hooks/fetchwishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
-class ProductsByCategory extends HookWidget {
-  const ProductsByCategory({
-    super.key,
-  });
+class WishlistWidget extends HookWidget {
+  const WishlistWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     String? accessToken = Storage().getString('accessToken');
-    final reults = fetchProductsByCategories(
-      context.read<CategoryNotifier>().id,
-    );
-
-    final products = reults.products;
-    final isLoading = reults.isLoading;
-    final error = reults.error;
+    final results = fetchWishlist();
+    final products = results.products;
+    final isLoading = results.isLoading;
+    final error = results.error;
+    final refetch = results.refetch;
 
     if (isLoading) {
-      return const Scaffold(
-        body: ListShimmer(),
+      return Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 12.w,
+          ),
+          child: const ListShimmer(),
+        ),
       );
     }
+
     return products.isEmpty
-        ? EmptyWidget()
+        ? const EmptyScreenWidget()
         : Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.h),
             child: StaggeredGrid.count(
@@ -55,29 +56,14 @@ class ProductsByCategory extends HookWidget {
                             loginBottomSheet(context);
                           } else {
                             //  Handle wishlist functionality
-                               context
-                                .read<WishlistNotifiers>()
-                                .addRemoveWishlist(product.id, () {});
+                            context.read<WishlistNotifiers>().addRemoveWishlist(
+                                  product.id,
+                                  refetch,
+                                );
                           }
                         },
                       ));
                 })),
           );
-  }
-}
-
-class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Image.asset(
-          My.ASSETS_IMAGES_EMPTY_PNG,
-          height: ScreenUtil().screenHeight * .3,
-        ),
-      );
   }
 }
