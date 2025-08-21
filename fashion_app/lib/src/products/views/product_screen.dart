@@ -4,6 +4,7 @@ import 'package:fashion_app/common/utils/colors.dart';
 import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/back_button.dart';
 import 'package:fashion_app/common/widgets/error_modal.dart';
+import 'package:fashion_app/common/widgets/login_bottom_sheet.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/const/constants.dart' show placeholder, errorWidget;
 import 'package:fashion_app/src/products/controllers/colors_sizes_controller.dart';
@@ -13,6 +14,7 @@ import 'package:fashion_app/src/products/widgets/expandable_product.dart';
 import 'package:fashion_app/src/products/widgets/product_bottom_bar.dart';
 import 'package:fashion_app/src/products/widgets/product_sizes_widget.dart';
 import 'package:fashion_app/src/products/widgets/similar_product.dart';
+import 'package:fashion_app/src/wishlist/controllers/wishlist_notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,20 +44,32 @@ class ProductPage extends StatelessWidget {
               leading: const AppBackButton(),
               actions: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: const CircleAvatar(
-                      backgroundColor: MColors.kSecondaryLight,
-                      radius: 10,
-                      child: Icon(
-                        AntDesign.heart,
-                        color: MColors.kRed,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                )
+                    padding: const EdgeInsets.all(8.0),
+                    child: Consumer<WishlistNotifiers>(
+                        builder: (context, wishlistNotifier, child) {
+                      return GestureDetector(
+                        onTap: () {
+                          if (accessToken == null) {
+                            loginBottomSheet(context);
+                          } else {
+                            wishlistNotifier.addRemoveWishlist(
+                                productNotifier.product!.id, () {});
+                          }
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: MColors.kSecondaryLight,
+                          radius: 10,
+                          child: Icon(
+                            AntDesign.heart,
+                            color: wishlistNotifier.wishlist
+                                    .contains(productNotifier.product!.id)
+                                ? MColors.kRed
+                                : MColors.kGray,
+                            size: 18,
+                          ),
+                        ),
+                      );
+                    }))
               ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: false,
@@ -63,9 +77,7 @@ class ProductPage extends StatelessWidget {
                   height: 320.h,
                   child: ImageSlideshow(
                     indicatorColor: MColors.kPrimary,
-                    onPageChanged: (value) {
-                    
-                    },
+                    onPageChanged: (value) {},
                     autoPlayInterval: 7000,
                     isLoop: productNotifier.product!.imageUrls.length > 1,
                     children: List.generate(
@@ -251,19 +263,18 @@ class ProductPage extends StatelessWidget {
               // if (accessToken == null) {
               //   loginBottomSheet(context);
               // } else {
-                if (context.read<ColorsSizesController>().color == '' ||
-                    context.read<ColorsSizesController>().sizes == '') {
-                  showErrorPopup(
-                    context,
-                    'Please select color and size to procced',
-                    "Error adding to cart",
-                    true,
-                  );
-                } else {
-                  print("Add to cart functionality called");
-                }
+              if (context.read<ColorsSizesController>().color == '' ||
+                  context.read<ColorsSizesController>().sizes == '') {
+                showErrorPopup(
+                  context,
+                  'Please select color and size to procced',
+                  "Error adding to cart",
+                  true,
+                );
+              } else {
+                print("Add to cart functionality called");
+              }
               // }
-              
             }),
       );
     });

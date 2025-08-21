@@ -24,12 +24,12 @@ class WishlistNotifiers with ChangeNotifier {
       });
 
       if (kDebugMode) {
-        print("response$response");
+        // print("response$response");
       }
-      print('here${response.statusCode}');
+      // print('here${response.statusCode}');
       if (response.statusCode == 200) {
         //  set the id to local storage
-        print('herefrf');
+        // print('herefrf');
 
         setToList(id);
         // Refetch data
@@ -57,16 +57,16 @@ class WishlistNotifiers with ChangeNotifier {
     String? accessToken = Storage().getString('accessToken');
     String? wishlistString = Storage().getString('${accessToken}wishlist');
 
-    print('🔍 setToList called with value: $v');
-    print('📦 AccessToken: $accessToken');
-    print('📦 Existing wishlist string: $wishlistString');
+    // print('🔍 setToList called with value: $v');
+    // print('📦 AccessToken: $accessToken');
+    // print('📦 Existing wishlist string: $wishlistString');
 
     if (wishlistString == null) {
       // Wishlist not stored yet → create a new one
       List<int> wishlist = [v];
       setWishlist(wishlist);
 
-      print('🆕 Wishlist created: $wishlist');
+      // print('🆕 Wishlist created: $wishlist');
 
       Storage().setString('${accessToken}wishlist', jsonEncode(wishlist));
     } else {
@@ -74,12 +74,12 @@ class WishlistNotifiers with ChangeNotifier {
       List<dynamic> decoded = jsonDecode(wishlistString);
       List<int> wishlist = decoded.map((e) => e as int).toList();
 
-      print('📋 Current wishlist: $wishlist');
+      // print('📋 Current wishlist: $wishlist');
 
       if (wishlist.contains(v)) {
         wishlist.removeWhere((e) => e == v);
 
-        print('❌ Removed $v → Updated wishlist: $wishlist');
+        // print('❌ Removed $v → Updated wishlist: $wishlist');
 
         setWishlist(wishlist);
         Storage().setString('${accessToken}wishlist', jsonEncode(wishlist));
@@ -87,7 +87,7 @@ class WishlistNotifiers with ChangeNotifier {
         wishlist.add(v);
 
         if (kDebugMode) {
-          print('✅ Added $v → Updated wishlist: $wishlist');
+          // print('✅ Added $v → Updated wishlist: $wishlist');
         }
 
         setWishlist(wishlist);
@@ -95,6 +95,6 @@ class WishlistNotifiers with ChangeNotifier {
       }
     }
 
-    print('💾 Wishlist successfully saved.');
+    // print('💾 Wishlist successfully saved.');
   }
 }

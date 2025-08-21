@@ -1,4 +1,9 @@
 import 'package:fashion_app/common/services/storage.dart';
+import 'package:fashion_app/common/utils/colors.dart';
+import 'package:fashion_app/common/utils/kstrings.dart';
+import 'package:fashion_app/common/widgets/app_style.dart';
+import 'package:fashion_app/common/widgets/back_button.dart';
+import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/src/auth/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +16,21 @@ class Cartpage extends StatelessWidget {
     if (accessToken == null) {
       return const LoginPage();
     }
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        leading: AppBackButton(
+          onTap: () {},
+        ),
+        title: ReusableText(
+          text: AppText.kCart,
+          style: appStyle(
+            15,
+            MColors.kPrimary,
+            FontWeight.bold,
+          ),
+        ),
+      ),
+      body: const Center(
         child: Text('Cart Page'),
       ),
     );
