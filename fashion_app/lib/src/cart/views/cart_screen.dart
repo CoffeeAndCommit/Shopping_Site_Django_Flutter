@@ -5,6 +5,7 @@ import 'package:fashion_app/common/widgets/app_style.dart';
 import 'package:fashion_app/common/widgets/back_button.dart';
 import 'package:fashion_app/common/widgets/reusable_text.dart';
 import 'package:fashion_app/src/auth/views/login_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Cartpage extends StatelessWidget {
@@ -16,7 +17,9 @@ class Cartpage extends StatelessWidget {
     if (accessToken == null) {
       return const LoginPage();
     }
-    print(accessToken);
+    if (kDebugMode) {
+      print(accessToken);
+    }
     return Scaffold(
       appBar: AppBar(
         leading: AppBackButton(
