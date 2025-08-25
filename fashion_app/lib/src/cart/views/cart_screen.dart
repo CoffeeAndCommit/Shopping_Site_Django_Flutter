@@ -16,6 +16,7 @@ class Cartpage extends StatelessWidget {
     if (accessToken == null) {
       return const LoginPage();
     }
+    print(accessToken);
     return Scaffold(
       appBar: AppBar(
         leading: AppBackButton(

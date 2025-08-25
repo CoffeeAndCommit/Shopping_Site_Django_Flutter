@@ -3,21 +3,17 @@
 from django.db import models
 from .models import Cart, Product
 from .serializers  import CartSerializer
-from rest_framework import IsAutheticated 
+# from rest_framework.permissions import IsAuthenticated 
 from django.shortcuts import get_object_or_404
-from rest_framework import status , generic 
+from rest_framework import status 
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from djpy_backend.backend.cart import serializers
-
-
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
-
 class AddItemToCart(APIView):
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         user = request.user
@@ -34,7 +30,7 @@ class AddItemToCart(APIView):
         try :
             cart_item = Cart.objects.get(
             user=user, 
-            product=product,
+            product=product, 
             color = data['color'], 
             size = data['size'],
             )
@@ -58,7 +54,7 @@ class AddItemToCart(APIView):
 
 
 class RemoveItemFromCart(APIView):
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
 
     def delete(self, request,):
         user = request.user
@@ -77,7 +73,7 @@ class RemoveItemFromCart(APIView):
 
 
 class CartCount (APIView):
-    permission_classes = [IsAutheticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user = request.user
@@ -85,7 +81,7 @@ class CartCount (APIView):
         return Response({'cart_count': cart_count}, status=status.HTTP_200_OK, )
 
 class UpdateCartItemQuantity(APIView):
-     permission_classes = [IsAutheticated]
+     permission_classes = [IsAuthenticated]
 
      def patc(self, request):
         user = request.user
@@ -100,8 +96,8 @@ class UpdateCartItemQuantity(APIView):
 
 
 
-class GetUserCart :
-    permission_classes = [IsAutheticated]
+class GetUserCart(APIView) :
+    permission_classes = [IsAuthenticated]
     serializersclass = CartSerializer
 
     def get(self, request):

@@ -10,4 +10,5 @@ urlpatterns = [
     # re_path(r'^auth/', include('djoser.urls')),
     path('api/products/', include('core.urls')),
     path('api/wishlist/', include('wishlist.urls')),
+    path('api/cart/', include('cart.urls')),
 ]
