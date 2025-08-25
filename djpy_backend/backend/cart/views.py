@@ -77,7 +77,7 @@ class CartCount (APIView):
 
     def get(self, request):
         user = request.user
-        cart_count = Carts.objects.filter(userId = user ).count()
+        cart_count = Cart.objects.filter(userId = user ).count()
         return Response({'cart_count': cart_count}, status=status.HTTP_200_OK, )
 
 class UpdateCartItemQuantity(APIView):
